@@ -1,0 +1,27 @@
+PODS:
+  - FBSnapshotTestCase (2.1.4):
+    - FBSnapshotTestCase/SwiftSupport (= 2.1.4)
+  - FBSnapshotTestCase/Core (2.1.4)
+  - FBSnapshotTestCase/SwiftSupport (2.1.4):
+    - FBSnapshotTestCase/Core
+  - TFLRouter (0.1.0)
+
+DEPENDENCIES:
+  - FBSnapshotTestCase
+  - TFLRouter (from `../`)
+
+SPEC REPOS:
+  trunk:
+    - FBSnapshotTestCase
+
+EXTERNAL SOURCES:
+  TFLRouter:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
+  TFLRouter: 21386ea96507d94b4d98caf1d1a152b5fdbdfba7
+
+PODFILE CHECKSUM: 669e92c9b5a5eb044adfb8c0c666a2b7a474db57
+
+COCOAPODS: 1.8.4

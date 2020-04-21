@@ -1,0 +1,6 @@
+framework module Pods_TFLRouter_Example {
+  umbrella header "Pods-TFLRouter_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}
