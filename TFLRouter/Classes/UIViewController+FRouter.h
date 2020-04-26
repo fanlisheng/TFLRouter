@@ -32,6 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param params 目标控制器的参数
 - (void)openAppViewController:(NSString * _Nonnull)viewController params:(NSDictionary *_Nonnull)params;
 
+
 /// 自定义跳转
 /// @param viewController 目标控制器
 /// @param paramsModel 跳转的参数、方式、动画、回调
@@ -55,6 +56,31 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param storyboardName 控制器名字
 /// @param paramsModel 跳转的参数、方式、动画、回调
 - (void)openAppViewControllerWithStoryboardName:(NSString * _Nonnull)storyboardName identifier:(NSString * _Nonnull)identifier paramsModel:(FRouterParamsModel * _Nonnull)paramsModel;
+
+
+
+/// present跳转
+/// @param viewController 目标控制器名字
+/// @param flag 动画
+/// @param params 参数
+/// @param completion 完成回调
+- (void)presentViewController:(NSString * _Nonnull)viewController
+                     animated:(BOOL)flag
+                       params:(NSDictionary *  __nullable)params
+                   completion:(void (^__nullable)(void))completion;
+
+/// present跳转
+/// @param storyboardName storyboardName
+/// @param identifier 标控制器标识
+/// @param flag 动画
+/// @param params 参数
+/// @param completion 完成回调
+- (void)presentrWithStoryboardName:(NSString * _Nonnull)storyboardName
+                        identifier:(NSString * _Nonnull)identifier
+                          animated:(BOOL)flag
+                            params:(NSDictionary * __nullable)params
+                        completion:(void (^__nullable)(void))completion;
+
 @end
 
 NS_ASSUME_NONNULL_END

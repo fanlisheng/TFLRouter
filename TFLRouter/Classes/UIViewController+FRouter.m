@@ -88,6 +88,36 @@
     }
 }
 
+#pragma present跳转
+//presentView跳转控制器
+- (void)presentViewController:(NSString * _Nonnull)viewController
+                     animated:(BOOL)flag
+                       params:(NSDictionary *__nullable)params
+                   completion:(void (^__nullable)(void))completion{
+    
+    UIViewController *vc = [UIViewController getTargetViewController:viewController];
+    if (!vc) {
+        NSLog(@"跳转之前控制器生成失败");
+        return;
+    }
+    [vc setViewController:vc params:params];
+    [self presentViewController:vc animated:flag completion:completion];
+}
+
+- (void)presentrWithStoryboardName:(NSString * _Nonnull)storyboardName
+                        identifier:(NSString * _Nonnull)identifier
+                          animated:(BOOL)flag
+                            params:(NSDictionary *__nullable)params
+                        completion:(void (^__nullable)(void))completion{
+    UIViewController *vc = [UIViewController getViewControllerWithStoryboardName:storyboardName identifier:identifier];
+    if (!vc) {
+        NSLog(@"跳转之前Storyboard控制器生成失败");
+        return;
+    }
+    [vc setViewController:vc params:params];
+    [self presentViewController:vc animated:flag completion:completion];
+}
+
 #pragma 获取控制器
 //获取目标控制器
 + (UIViewController *)getTargetViewController:(NSString *)targetViewController
