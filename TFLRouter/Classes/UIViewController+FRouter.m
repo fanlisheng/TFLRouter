@@ -17,7 +17,7 @@
     //如果没得paramsModel 跳转默认为push
     UIViewController *vc = [UIViewController getTargetViewController:viewController];
     if (!vc) return;
-    [self.navigationController pushViewController:(id)vc animated:YES];
+    [self pushViewController:(id)vc animated:YES];
     
 }
 
@@ -29,7 +29,7 @@
     if (!vc) return;
     //设置参数
     [self setViewController:vc params:params];
-    [self.navigationController pushViewController:(id)vc animated:YES];
+    [self pushViewController:(id)vc animated:YES];
     
 }
 
@@ -44,14 +44,14 @@
 - (void)openAppViewControllerWithStoryboardName:(NSString *)storyboardName identifier:(NSString *)identifier{
     UIViewController *vc = [UIViewController getViewControllerWithStoryboardName:storyboardName identifier:identifier];
     if (!vc) return;
-    [self.navigationController pushViewController:(id)vc animated:YES];
+    [self pushViewController:(id)vc animated:YES];
 }
 
 - (void)openAppViewControllerWithStoryboardName:(NSString *)storyboardName identifier:(NSString *)identifier params:(nonnull NSDictionary *)params{
     UIViewController *vc = [UIViewController getViewControllerWithStoryboardName:storyboardName identifier:identifier];
     if (!vc) return;
     [self setViewController:vc params:params];
-    [self.navigationController pushViewController:(id)vc animated:YES];
+    [self pushViewController:(id)vc animated:YES];
 }
 
 - (void)openAppViewControllerWithStoryboardName:(NSString *)storyboardName identifier:(NSString *)identifier paramsModel:(FRouterParamsModel *)paramsModel{
@@ -76,7 +76,7 @@
     if(paramsModel.jumpWay == JumpWay_PresentedViewController){
          [self presentViewController:viewController animated:animated completion:paramsModel.completion];
     }else{
-        [self.navigationController pushViewController:viewController animated:animated];
+        [self pushViewController:viewController animated:animated];
     }
 }
 
@@ -85,6 +85,20 @@
     for (NSString *key in params) {
         id value = params[key];
         [viewController setValue:value forKey:key];
+    }
+}
+
+//跳转判断空
+- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
+    if (self.navigationController == nil) {
+        if (!([UIViewController jsd_findVisibleViewController].navigationController == nil)) {
+            [[UIViewController jsd_findVisibleViewController].navigationController pushViewController:viewController animated:animated];
+        }else{
+            NSLog(@"导航控制器为nil======================%@",self);
+        }
+        
+    }else{
+        [[UIViewController jsd_findVisibleViewController].navigationController pushViewController:viewController animated:animated];
     }
 }
 
@@ -173,4 +187,6 @@
      UIViewController  *vc = [storyboard instantiateViewControllerWithIdentifier:identifier];
      return vc;
 }
+
+
 @end
